@@ -1,0 +1,15 @@
+pip>=9
+setuptools>=26
+wheel>=0.29
+pandas
+numpy
+memoized-property
+gcsfs
+fastapi==0.95.2
+joblib==1.2.0
+pydantic==1.10.7
+PyMySQL==1.0.3
+python-dotenv==1.0.0
+setuptools==56.0.0
+scikit-learn==1.1.2
+uvicorn==0.22.0
