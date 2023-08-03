@@ -8,6 +8,7 @@ COPY Pipfile.lock /app/Pipfile.lock
 COPY model.py /app/model.py
 COPY iris_model.pkl /app/iris_model.pkl
 COPY iris.csv /app/iris.csv
+COPY TableStructure.py /app/TableStructure.py
 
 
 # set the working directory in the container to be /app
