@@ -2,7 +2,7 @@
 import uvicorn
 import pymysql
 from TableStructure import bddinputs
-#from typing import List
+from dotenv import load_dotenv
 from urllib.parse import urlparse
 import os
 from fastapi import FastAPI
@@ -14,6 +14,7 @@ model = IrisModel()
 
 
 def connect():
+    load_dotenv()
     # Récupérer l'URL de la base de données à partir des variables d'environnement
     database_url = os.getenv("DATABASE_URL")
 
@@ -22,7 +23,7 @@ def connect():
     db_host = url_components.hostname
     db_user = url_components.username
     db_password = url_components.password
-    db_name = url_components.path.decode('utf-8').strip('/')
+    db_name = url_components.path.strip('/')
 
     # Configurer la connexion à la base de données MySQL
     conn = pymysql.connect(
@@ -68,7 +69,7 @@ async def delete_item():
     # Effectuer des opérations sur la base de données
     conn = connect()
     with conn.cursor() as cursor:
-        query = "DELETE * FROM streamlit"
+        query = "DELETE FROM streamlit"
         cursor.execute(query)
         conn.commit()
 
