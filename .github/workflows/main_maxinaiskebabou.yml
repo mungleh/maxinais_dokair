@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://maxinaiskebabou.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_929ac3891ac4412e8e857ad7194a8179 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_5eee6c80a8a24a719d6613f5c2b34252 }}
+        registry: https://mlsimplonmarzim.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_bfd673e5b70e4f62972b9ae9f4309f8e }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_a3b06a95517c428e8f0d4daf9fb9368d }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: maxinaiskebabou.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_929ac3891ac4412e8e857ad7194a8179 }}/maxinaiskebabou:${{ github.sha }}
+        tags: mlsimplonmarzim.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_bfd673e5b70e4f62972b9ae9f4309f8e }}/maxinais_dokair:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'maxinaiskebabou'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_4a9c5efb315d4e1ba353e13ccaa8e21c }}
-        images: 'maxinaiskebabou.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_929ac3891ac4412e8e857ad7194a8179 }}/maxinaiskebabou:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d59cec0cb4a34107ae829095a9f99444 }}
+        images: 'mlsimplonmarzim.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_bfd673e5b70e4f62972b9ae9f4309f8e }}/maxinais_dokair:${{ github.sha }}'
