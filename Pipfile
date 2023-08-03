@@ -15,6 +15,7 @@ numpy = "*"
 scikit-learn = "*"
 pytest = "*"
 pymysql = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
