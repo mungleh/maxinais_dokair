@@ -22,7 +22,7 @@ def connect():
     db_host = url_components.hostname
     db_user = url_components.username
     db_password = url_components.password
-    db_name = url_components.path.strip('/')
+    db_name = url_components.path.decode('utf-8').strip('/')
 
     # Configurer la connexion à la base de données MySQL
     conn = pymysql.connect(
@@ -54,7 +54,7 @@ async def create_item(item: bddinputs):
     # Effectuer des opérations sur la base de données
     conn = connect()
     with conn.cursor() as cursor:
-        query = "INSERT INTO streamlit (input, prediction, probabilité) " \
+        query = "INSERT INTO streamlit (input, prediction, probabilité)" \
                  "VALUES (%s, %s, %s)"
         values = (item.input, item.prediction, item.probabilité)
         cursor.execute(query, values)
