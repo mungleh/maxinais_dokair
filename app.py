@@ -4,6 +4,7 @@ import pymysql
 from TableStructure import bddinputs
 from dotenv import load_dotenv
 from urllib.parse import urlparse
+from typing import List
 import os
 from fastapi import FastAPI
 from model import IrisModel, IrisSpecies
@@ -33,6 +34,30 @@ def connect():
         database=db_name
     )
     return conn
+
+
+@app.get("/")
+async def get_items() -> List[bddinputs]:
+    # Effectuer des opérations sur la base de données
+    conn = connect()
+    with conn.cursor() as cursor:
+        cursor.execute("SELECT * FROM streamlit")
+        results = cursor.fetchall()
+
+    # Convertir les résultats en une liste d'objets Test a refacto par la suite
+    items = []
+    for row in results:
+        data_dict = {
+            "input": row[0],
+            "prediction" : row[1],
+            "probabilité" : row[2],
+        }
+
+        data_user = bddinputs(**data_dict)
+        items.append(data_user)
+
+    # Retourner les résultats de l'API
+    return items
 
 
 # 3. Expose the prediction functionality, make a prediction from the passed
