@@ -16,6 +16,7 @@ scikit-learn = "*"
 pytest = "*"
 pymysql = "*"
 python-dotenv = "*"
+typing = "*"
 
 [dev-packages]
 
